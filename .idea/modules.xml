@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CancerLifeApp/CancerLifeApp.iml" filepath="$PROJECT_DIR$/CancerLifeApp/CancerLifeApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CancerLifeAppProject.iml" filepath="$PROJECT_DIR$/CancerLifeAppProject.iml" />
+    </modules>
+  </component>
+</project>
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.platforms.menu.SlideHolder
+        android:id="@+id/slideHolder"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <include
+            android:id="@+id/leftMenu"
+            android:layout_width="match_parent"
+            layout="@layout/menu" />
+
+        <RelativeLayout
+            android:id="@+id/content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff">
+            <RelativeLayout
+                android:id="@+id/topBar"
+                android:layout_width="fill_parent"
+                android:layout_height="55dp">
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/menu_logo"
+                    android:text="menu"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="12dp"
+                    android:onClick="showMenu"/>
+                <ImageView
+                    android:id="@+id/topBarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/cancer_life_menu_logo"
+                    />
+                </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/middleContent"
+                android:layout_below="@id/topBar"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                    <Button
+                        android:id="@+id/journalButton"
+                        android:layout_width= "250dp"
+                        android:layout_height="134dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/journal_button"
+                        android:gravity="bottom|center_horizontal"
+                        android:paddingBottom="15dp"
+                        android:text="Journal"
+                        android:onClick="toJournal"
+                        android:textColor="#a5aaac"
+                        android:textSize="30sp"
+                        android:layout_centerHorizontal="true"/>
+                    <Button
+                        android:id="@+id/messagesButton"
+                        android:layout_width= "250dp"
+                        android:layout_height="134dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/journalButton"
+                        android:background="@drawable/messages_button"
+                        android:gravity="bottom|center_horizontal"
+                        android:paddingBottom="15dp"
+                        android:text="Messages"
+                        android:onClick="toMessages"
+                        android:textColor="#a5aaac"
+                        android:textSize="30sp"
+                        android:layout_centerHorizontal="true"/>
+                    <Button
+                        android:id="@+id/invitesButton"
+                        android:layout_width= "250dp"
+                        android:layout_height="134dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_below="@id/messagesButton"
+                        android:background="@drawable/invites_button"
+                        android:gravity="bottom|center_horizontal"
+                        android:paddingBottom="15dp"
+                        android:text="Invites"
+                        android:onClick="toInvites"
+                        android:textColor="#a5aaac"
+                        android:textSize="30sp"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+        </RelativeLayout>
+    </com.platforms.menu.SlideHolder>
+
+</RelativeLayout>

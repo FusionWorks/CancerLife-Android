@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.platforms"
+    android:versionCode="6"
+    android:versionName="1.0" >
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <permission
+        android:name="com.platforms.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.platforms.push.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-feature android:name="android.hardware.camera"></uses-feature>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:name="com.platforms.utils.CancerLife"
+        android:label="@string/app_name"
+        android:debuggable="true"
+        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        <activity
+            android:name="com.platforms.main.LoginActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.platforms.main.HomeActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.RegisterActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.JournalActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.ProfileActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.SupportersActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.steps.StepOne"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.steps.StepTwo"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.steps.StepThree"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.CommentsActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.PatientsActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.MessagesActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.ChatsListActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.platforms.main.ReportsActivity"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenLayout"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.platforms.utils.ServiceDialog" android:label="" android:theme="@android:style/Theme.Dialog" />
+        <service android:name=".GCMIntentService" />
+
+        <service android:enabled="true" android:name="com.platforms.utils.MessagesListener" />
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.platforms" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

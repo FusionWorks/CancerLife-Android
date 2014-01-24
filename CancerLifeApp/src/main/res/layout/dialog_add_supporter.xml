@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/failText"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Something went wrong"
+            android:textColor="#aa0000"
+            android:textSize="20sp"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="15dp"
+            android:textSize="25dp"
+            android:textColor="#000"
+            android:singleLine="true"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:hint="Email"
+            android:background="@drawable/top_edit_text"
+            android:drawableRight="@drawable/email_small_logo"
+            android:paddingRight="15dp"
+            android:layout_centerHorizontal="true"/>
+        <Spinner
+            android:id="@+id/circlesSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:paddingLeft="15dp"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bottom_edit_text"
+            android:layout_below="@id/zipCode"/>
+
+        <Button
+            android:id="@+id/sendInvite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send invite"
+            android:textColor="#fff"
+            android:textSize="23sp"
+            android:paddingLeft="10dp"
+            android:onClick="inviteSupporterRequest"
+            android:gravity="center_vertical"
+            android:layout_marginTop="20dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/post_entry_button"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+    <ProgressBar
+        android:id="@+id/animationLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

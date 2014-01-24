@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/openSymptomSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/postsList"
+        android:layout_marginTop="5dp"
+        android:text="  Add a symptom"
+        android:textSize="25sp"
+        android:textColor="#b9bdbe"
+        android:onClick="symptomList"
+        android:drawableLeft="@drawable/plus_sign"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/light_gray_button"
+        />
+</LinearLayout>

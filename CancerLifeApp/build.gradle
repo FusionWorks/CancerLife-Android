@@ -1,0 +1,29 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.7.+'
+    }
+}
+apply plugin: 'android'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion '18.1.0'
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 10
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:18.0.0'
+    compile files('libs/asmack-android-8-0.8.3.jar')
+    compile files('libs/gcm.jar')
+}
