@@ -21,15 +21,16 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.platforms.R;
+import com.platforms.async.ATGetJournal;
+import com.platforms.async.ATNewComment;
+import com.platforms.main.CommentsActivity;
+import com.platforms.main.JournalActivity;
 import com.platforms.objects.Comment;
 import com.platforms.objects.JournalItem;
 import com.platforms.objects.SideEffect;
-import com.platforms.async.ATGetJournal;
-import com.platforms.async.ATNewComment;
-import com.platforms.R;
-import com.platforms.main.CommentsActivity;
-import com.platforms.main.JournalActivity;
 import com.platforms.utils.Endpoints;
 import com.platforms.utils.Utils;
 
@@ -46,6 +47,7 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
     private JournalActivity activity;
     JournalItem journalItem;
     Dialog addCommentDialog;
+    ArrayList<Comment> comments;
     public JournalAdapter(JournalActivity activity, ArrayList<JournalItem> data) {
         super(activity, R.layout.activity_journal ,data);
         this.activity=activity;
@@ -84,7 +86,7 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
 
         }
 
-        ArrayList<Comment> comments = new ArrayList<Comment>();
+        comments = new ArrayList<Comment>();
         comments = journalItem.comments;
         setComments(comments, rowView);
 
@@ -92,9 +94,13 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
         moreComments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JournalItem JI = data.get(position);
-                Log.v("CL", "ashs "+JI.id);
-                toComments(JI.id);
+                if(comments.size()>2){
+                    JournalItem JI = data.get(position);
+                    Log.v("CL", "ashs "+JI.id);
+                    toComments(JI.id);
+                }else{
+                    Toast.makeText(activity, "No more comments", Toast.LENGTH_LONG);
+                }
             }
         });
 
@@ -169,7 +175,7 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
                     smallBar.setVisibility(View.VISIBLE);
                     TextView bar = new TextView(activity.getApplicationContext());
                     bar.setLayoutParams(new LinearLayout.LayoutParams(
-                            bottomBar.getLayoutParams().width/10*effect.level2,
+                            bottomBar.getLayoutParams().width/4*effect.level2,
                             LinearLayout.LayoutParams.MATCH_PARENT));
 
                     roundandColorCorners(bar,0x99ff0000);
@@ -184,29 +190,30 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
         RelativeLayout firstComment =  (RelativeLayout)rowView.findViewById(R.id.firstComment);
         RelativeLayout secondComment =  (RelativeLayout)rowView.findViewById(R.id.secondComment);
 
-        for(Comment comment : comments){
+        for(int i = 0; i<comments.size(); i++){
             firstComment.setVisibility(View.VISIBLE);
             ImageView photo = (ImageView)firstComment.findViewById(R.id.photo);
             TextView name = (TextView)firstComment.findViewById(R.id.name);
             TextView text = (TextView)firstComment.findViewById(R.id.text);
             TextView time = (TextView)firstComment.findViewById(R.id.time);
 
-            Utils.setBackgroundBySDK(photo, comment.photo);
-            name.setText(comment.name);
-            text.setText(comment.comment);
-            time.setText(comment.time);
-            if (comments.size() == 2){
+            Utils.setBackgroundBySDK(photo, comments.get(0).photo);
+            name.setText(comments.get(0).name);
+            text.setText(comments.get(0).comment);
+            time.setText(comments.get(0).time);
+            if (comments.size() > 1){
                 secondComment.setVisibility(View.VISIBLE);
                 ImageView secondPhoto = (ImageView)secondComment.findViewById(R.id.photo);
                 TextView secondName = (TextView)secondComment.findViewById(R.id.name);
                 TextView secondText = (TextView)secondComment.findViewById(R.id.text);
                 TextView secondTime = (TextView)secondComment.findViewById(R.id.time);
 
-                Utils.setBackgroundBySDK(secondPhoto, comment.photo);
-                secondName.setText(comment.name);
-                secondText.setText(comment.comment);
-                secondTime.setText(comment.time);
+                Utils.setBackgroundBySDK(secondPhoto, comments.get(1).photo);
+                secondName.setText(comments.get(1).name);
+                secondText.setText(comments.get(1).comment);
+                secondTime.setText(comments.get(1).time);
             }
+            break;
         }
     }
 
@@ -230,6 +237,7 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
         dialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            if(commentText.getText().length()>0){
                 addCommentDialog.findViewById(R.id.failText).setVisibility(View.GONE);
                 ProgressBar loadingAnimationContent = (ProgressBar)addCommentDialog.findViewById(R.id.animationLoading);
                 String endPoint = Endpoints.newComment;
@@ -242,9 +250,13 @@ public class JournalAdapter extends ArrayAdapter<JournalItem> {
                 }
                 ATNewComment ATSI = new ATNewComment(endPoint, activity, loadingAnimationContent, data, addCommentDialog);
                 ATSI.execute();
+            }else{
+               TextView text = (TextView)addCommentDialog.findViewById(R.id.failText);
+                text.setVisibility(View.VISIBLE);
+                text.setText("Please enter at least 2 symbols");
+            }
             }
         });
         addCommentDialog.show();
     }
-
 }

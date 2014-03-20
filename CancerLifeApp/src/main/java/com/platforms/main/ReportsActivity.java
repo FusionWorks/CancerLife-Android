@@ -1,22 +1,26 @@
 package com.platforms.main;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
-import com.platforms.objects.ReportItem;
+import com.platforms.R;
 import com.platforms.adapter.ReportsCustomAdapter;
 import com.platforms.async.ATGraphic;
 import com.platforms.async.ATReports;
-import com.platforms.R;
 import com.platforms.handlers.ReportsHandler;
+import com.platforms.objects.ColorItem;
+import com.platforms.objects.ReportItem;
 import com.platforms.utils.Endpoints;
 import com.platforms.utils.Utils;
 
@@ -158,5 +162,32 @@ public class ReportsActivity extends Activity {
         Log.v("CL", "repo "+reportsHandler.getGraphic().get(selectedInterval));
         ImageView graphic = (ImageView)findViewById(R.id.graphic);
         graphic.setImageDrawable(reportsHandler.getGraphic().get(selectedInterval));
+        if(reportsHandler.getListItems() != null){
+            LinearLayout layoutMaster = (LinearLayout)findViewById(R.id.layoutMaster);
+            layoutMaster.removeAllViews();
+            ArrayList<ColorItem> items = reportsHandler.getListItems().get(selectedInterval);
+            Log.v("CL", "items "+ items.get(0).text);
+            for(ColorItem item : items){
+                LinearLayout LL = new LinearLayout(this);
+                LL.setOrientation(LinearLayout.HORIZONTAL);
+                LinearLayout.LayoutParams LLParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+                LL.setLayoutParams(LLParams);
+
+                LinearLayout.LayoutParams forColor = new LinearLayout.LayoutParams(35,35);
+                forColor.setMargins(0,0,5,0);
+
+                ImageView color = new ImageView(this);
+                color.setLayoutParams(forColor);
+                color.setBackgroundColor(Color.parseColor(item.color));
+                LL.addView(color);
+
+                TextView text = new TextView(this);
+                text.setLayoutParams(LLParams);
+                text.setText(item.text);
+                LL.addView(text);
+
+                layoutMaster.addView(LL);
+            }
+        }
     }
 }

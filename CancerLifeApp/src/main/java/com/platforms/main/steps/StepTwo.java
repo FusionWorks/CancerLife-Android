@@ -36,7 +36,7 @@ import java.util.GregorianCalendar;
 public class StepTwo extends Activity{
 
     int DIALOG_DATE = 1;
-    int myYear = 2011;
+    int myYear = 2014;
     int myMonth = 02;
     int myDay = 03;
 
@@ -184,6 +184,8 @@ public class StepTwo extends Activity{
                 Log.v("CL","post Item "+postItem.name+" name "+name);
                 if(postItem.name.equals(name)){
                     selectedArray.add(postItem);
+                    symptomsNames.add(postItem.name);
+                    Log.v("CL", "selectedArray " + selectedArray.size() + "symptomsNames " + symptomsNames.size());
                 }
             }
         }

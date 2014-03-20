@@ -7,13 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
+        android:background="#cccccccc"
         android:gravity="center_horizontal">
         <TextView
             android:id="@+id/failText"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Something went wrong"
-            android:textColor="#aa0000"
+            android:text="Something went wrong, please try again"
+            android:textColor="#bb2200"
             android:textSize="20sp"
             android:visibility="gone"
             android:layout_gravity="center_horizontal"

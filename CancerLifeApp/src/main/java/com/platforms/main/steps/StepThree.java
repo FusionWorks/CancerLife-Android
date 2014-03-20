@@ -52,7 +52,8 @@ public class StepThree extends Activity {
 
     public void postPrivate(View view){
         try {
-            if (StepOne.dataToSend.has("circle")) StepOne.dataToSend.put("circle","");
+            if (StepOne.dataToSend.has("circle"))
+                StepOne.dataToSend.put("circle","");
             StepOne.dataToSend.put("message",message.getText().toString());
             StepOne.dataToSend.put("private", true);
             Log.v("CL","data " + StepOne.dataToSend);

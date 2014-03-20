@@ -38,37 +38,55 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:text="astATASTSATASTASTtastatt ?"/>
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/levelOne"
         android:orientation="horizontal"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/levelOneNumber"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/minusButton"
+            android:layout_width="64dp"
+            android:layout_height="40dp"
+            android:background="@drawable/minus_button"/>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:background="#ccc"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:text="8"/>
-        <SeekBar
-            android:id="@+id/levelOneBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:key="seekBarPreference"
-            android:persistent="true"
-            android:defaultValue="20"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-        </LinearLayout>
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/minLevel"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:text="1"/>
+            <TextView
+                android:id="@+id/separatorLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="23sp"
+                android:text="/"/>
+            <TextView
+                android:id="@+id/maxLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="23sp"
+                android:text="10"/>
+            </LinearLayout>
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="64dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/plus_button"/>
+        </RelativeLayout>
     <TextView
         android:id="@+id/levelTwoTitle"
         android:layout_height="wrap_content"
@@ -80,37 +98,55 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:text="astATASTSATASTASTtastatt ?"/>
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/levelTwo"
         android:orientation="horizontal"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="30dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/levelTwoNumber"
-            android:layout_height="wrap_content"
+        <Button
+            android:id="@+id/minusButton"
+            android:layout_width="64dp"
+            android:layout_height="40dp"
+            android:background="@drawable/minus_button"/>
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:background="#ccc"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textColor="#000"
-            android:textSize="18sp"
-            android:text="8"/>
-        <SeekBar
-            android:id="@+id/levelTwoBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:key="seekBarPreference"
-            android:persistent="true"
-            android:defaultValue="20"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp" />
-    </LinearLayout>
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/minLevel"
+                android:layout_gravity="bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="24sp"
+                android:text="1"/>
+            <TextView
+                android:id="@+id/separatorLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="23sp"
+                android:text="/"/>
+            <TextView
+                android:id="@+id/maxLevel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="23sp"
+                android:text="10"/>
+        </LinearLayout>
+        <Button
+            android:id="@+id/plusButton"
+            android:layout_width="64dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/plus_button"/>
+    </RelativeLayout>
     <TextView
         android:id="@+id/toolTip"
         android:layout_height="wrap_content"

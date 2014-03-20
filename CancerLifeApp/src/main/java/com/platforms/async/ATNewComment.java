@@ -79,6 +79,7 @@ public class ATNewComment extends AsyncTask<Void, Void, Void> {
 
             JSONObject jsonResult = (new JSONObject(EntityUtils.toString(response.getEntity())));
             result = jsonResult.getInt("result");
+            Log.v("CL", "json "+jsonResult);
         } catch (IOException e) {
             e.printStackTrace();
             Log.v("CancerLife", "exception" + e);
@@ -95,8 +96,10 @@ public class ATNewComment extends AsyncTask<Void, Void, Void> {
         if (result == 1){
             addCommentDialog.dismiss();
             journalActivity.getJournal();
+            loading.setVisibility(View.GONE);
         }else{
             addCommentDialog.findViewById(R.id.failText).setVisibility(View.VISIBLE);
+            loading.setVisibility(View.GONE);
         }
     }
 

@@ -11,13 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.platforms.objects.Level;
-import com.platforms.objects.PostItem;
 import com.platforms.R;
 import com.platforms.main.steps.StepTwo;
+import com.platforms.objects.Level;
+import com.platforms.objects.PostItem;
 import com.platforms.utils.Utils;
 
 import java.util.ArrayList;
@@ -45,92 +45,103 @@ public class PostJournalAdapter extends ArrayAdapter<PostItem> {
 
         TextView name = (TextView) rowView.findViewById(R.id.title);
         ImageView icon = (ImageView) rowView.findViewById(R.id.icon);
-        LinearLayout levelOne = (LinearLayout) rowView.findViewById(R.id.levelOne);
-        LinearLayout levelTwo = (LinearLayout) rowView.findViewById(R.id.levelTwo);
+        RelativeLayout levelOne = (RelativeLayout) rowView.findViewById(R.id.levelOne);
+        RelativeLayout levelTwo = (RelativeLayout) rowView.findViewById(R.id.levelTwo);
         TextView levelOneTitle = (TextView) rowView.findViewById(R.id.levelOneTitle);
-        TextView levelOneNumber = (TextView) rowView.findViewById(R.id.levelOneNumber);
-        SeekBar levelOneBar = (SeekBar) rowView.findViewById(R.id.levelOneBar);
         TextView levelTwoTitle = (TextView) rowView.findViewById(R.id.levelTwoTitle);
-        TextView levelTwoNumber = (TextView) rowView.findViewById(R.id.levelTwoNumber);
-        final SeekBar levelTwoBar = (SeekBar) rowView.findViewById(R.id.levelTwoBar);
+
+        final TextView minLevel = (TextView) levelOne.findViewById(R.id.minLevel);
+        final TextView minLevel2 = (TextView) levelTwo.findViewById(R.id.minLevel);
+        TextView maxLevel = (TextView) levelOne.findViewById(R.id.maxLevel);
+        TextView maxLevel2 = (TextView) levelTwo.findViewById(R.id.maxLevel);
+        TextView minusButton = (TextView) levelOne.findViewById(R.id.minusButton);
+        TextView minusButton2 = (TextView) levelTwo.findViewById(R.id.minusButton);
+        TextView plusButton = (TextView) levelOne.findViewById(R.id.plusButton);
+        TextView plusButton2 = (TextView) levelTwo.findViewById(R.id.plusButton);
+
         final TextView toolTip = (TextView) rowView.findViewById(R.id.toolTip);
         TextView question1Title = (TextView) rowView.findViewById(R.id.question1);
         TextView question2Title = (TextView) rowView.findViewById(R.id.question2);
         spinner = (Button) rowView.findViewById(R.id.spinner);
 
-        levelOneBar.setTag(levelOneNumber);
-        levelTwoBar.setTag(levelTwoNumber);
-
-        levelOneBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        minusButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TextView number = (TextView) seekBar.getTag();
-                number.setText(String.valueOf(progress));
-                if (progress == 0)
-                    seekBar.setProgress(1);
-                Level level = item.level1;
-                Level newLevel = new Level(level.question, level.min, level.max, level.step, progress,level.options);
-                PostItem b = new PostItem(item.name, item.order, newLevel, item.level2, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
-                data.set(position, b);
-                Collections.copy(StepTwo.selectedArray, data);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onClick(View v) {
+                int number = Integer.parseInt(minLevel.getText().toString());
+                if(number > 1){
+                    number -= 1;
+                    minLevel.setText(""+number);
+                    Level level = item.level1;
+                    Level newLevel = new Level(level.question, level.min, level.max, level.step, number, level.options);
+                    PostItem b = new PostItem(item.name, item.order, newLevel, item.level2, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
+                    data.set(position, b);
+                    Collections.copy(StepTwo.selectedArray, data);
+                }
             }
         });
-        levelTwoBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        minusButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TextView number = (TextView)seekBar.getTag();
-                number.setText(String.valueOf(progress));
-
-
-                if(levelTwoBar.equals(seekBar) && item.level2.options.size()>1){
-                    if(progress != 0){
-                        toolTip.setText(item.level2.options.get(progress - 1));
-                    }
+            public void onClick(View v) {
+                int number = Integer.parseInt(minLevel2.getText().toString());
+                if(number > 1){
+                    number -= 1;
+                    minLevel2.setText(""+number);
+                    if(item.level2.options.size()>1)
+                        toolTip.setText(item.level2.options.get(number-1));
+                    Level level = item.level2;
+                    Level newLevel = new Level(level.question, level.min, level.max, level.step, number, level.options);
+                    PostItem b = new PostItem(item.name, item.order, item.level1, newLevel, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
+                    data.set(position, b);
+                    Collections.copy(StepTwo.selectedArray, data);
                 }
-                if (progress == 0)
-                    seekBar.setProgress(1);
-                Level level = item.level2;
-                Level newLevel = new Level(level.question, level.min, level.max, level.step, progress,level.options);
-                PostItem b = new PostItem(item.name, item.order, item.level1 , newLevel, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
-                data.set(position, b);
-
-                Collections.copy(StepTwo.selectedArray, data);
-
             }
+        });
 
+        plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
+            public void onClick(View v) {
+                int number = Integer.parseInt(minLevel.getText().toString());
+                if(number < item.level1.max){
+                    number += 1;
+                    minLevel.setText(""+number);
+                    Level level = item.level1;
+                    Level newLevel = new Level(level.question, level.min, level.max, level.step, number, level.options);
+                    PostItem b = new PostItem(item.name, item.order, item.level1, newLevel, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
+                    data.set(position, b);
+                    Collections.copy(StepTwo.selectedArray, data);
+                }
             }
+        });
 
+        plusButton2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onClick(View v) {
+                int number = Integer.parseInt(minLevel2.getText().toString());
+                if(number < item.level2.max){
+                    number += 1;
+                    minLevel2.setText(""+number);
+                    if(item.level2.options.size()>1)
+                        toolTip.setText(item.level2.options.get(number-1));
+                    Level level = item.level2;
+                    Level newLevel = new Level(level.question, level.min, level.max, level.step, number, level.options);
+                    PostItem b = new PostItem(item.name, item.order, item.level1, newLevel, item.question1Type, item.question1Text, item.question2Type, item.question2Text, item.question2options);
+                    data.set(position, b);
+                    Collections.copy(StepTwo.selectedArray, data);
+                }
             }
         });
 
 
         roundandColorCorners(name, 0x99cccccc);
-        roundandColorCorners(levelOneNumber, 0x99cccccc);
-        roundandColorCorners(levelTwoNumber, 0x99cccccc);
 
         item = data.get(position);
         name.setText(item.name);
         try{
             if(!item.level1.question.equals("")){
                 levelOneTitle.setText(item.level1.question);
-                levelOneBar.setMax(item.level1.max);
-                levelOneBar.setProgress(item.level1.defaultNum);
+                maxLevel.setText(String.valueOf(item.level1.max));
+                minLevel.setText(String.valueOf(item.level1.defaultNum));
             }
         }catch(NullPointerException e){
             levelOne.setVisibility(View.GONE);
@@ -139,10 +150,12 @@ public class PostJournalAdapter extends ArrayAdapter<PostItem> {
         try{
             if(!item.level2.question.equals("")){
                 levelTwoTitle.setText(item.level2.question);
-                levelTwoBar.setMax(item.level2.max);
-                levelTwoBar.setProgress(item.level2.defaultNum);
-                if(item.level2.options.size()>1)
+                maxLevel2.setText(String.valueOf(item.level2.max));
+                minLevel2.setText(String.valueOf(item.level2.defaultNum));
+                if(item.level2.options.size()>1){
                     toolTip.setVisibility(View.VISIBLE);
+                    toolTip.setText(item.level2.options.get(item.level2.defaultNum-1));
+                }
             }
         }catch (NullPointerException e){
             levelTwo.setVisibility(View.GONE);

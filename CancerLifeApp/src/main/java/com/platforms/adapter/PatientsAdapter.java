@@ -108,7 +108,7 @@ public class PatientsAdapter  extends ArrayAdapter<PatientItem> {
                     smallBar.setVisibility(View.VISIBLE);
                     TextView bar = new TextView(activity.getApplicationContext());
                     bar.setLayoutParams(new LinearLayout.LayoutParams(
-                            bottomBar.getLayoutParams().width/10*effect.level2,
+                            bottomBar.getLayoutParams().width/4*effect.level2,
                             LinearLayout.LayoutParams.MATCH_PARENT));
 
                     roundandColorCorners(bar,0x99ff0000);

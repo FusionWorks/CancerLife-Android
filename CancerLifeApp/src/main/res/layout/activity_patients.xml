@@ -5,7 +5,8 @@
     <com.platforms.menu.SlideHolder
         android:id="@+id/slideHolder"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="#00000000">
 
         <include
             android:id="@+id/leftMenu"
@@ -119,8 +120,13 @@
                     android:id="@+id/patientList"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
-                    android:background="#fff"
-                    android:cacheColorHint="#00000000"
+                    android:focusable="true"
+                    android:fastScrollEnabled="true"
+                    android:focusableInTouchMode="true"
+                    android:transcriptMode="normal"
+                    android:cacheColorHint="@android:color/transparent"
+                    android:scrollingCache="false"
+                    android:divider="#ffffffff"
                     android:padding="5dp"
                     android:layout_below="@id/segmentButtons">
                 </ListView>

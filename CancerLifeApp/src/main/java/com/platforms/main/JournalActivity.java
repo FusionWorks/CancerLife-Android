@@ -8,17 +8,18 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.platforms.objects.JournalItem;
+import com.platforms.R;
 import com.platforms.adapter.JournalAdapter;
 import com.platforms.async.ATGetJournal;
-import com.platforms.R;
 import com.platforms.handlers.JournalHandler;
 import com.platforms.main.steps.StepOne;
 import com.platforms.menu.NavMenu;
 import com.platforms.menu.SlideHolder;
+import com.platforms.objects.JournalItem;
 import com.platforms.utils.Endpoints;
 import com.platforms.utils.Reachability;
 
@@ -48,9 +49,11 @@ public class JournalActivity extends Activity{
         loading = (RelativeLayout) findViewById(R.id.loadingAnimationContent);
         curentListPosition = 0;
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Button postButton = (Button) findViewById(R.id.postButton);
         if(prefs.getBoolean("patient",false))
             userId = prefs.getString("userId","");
         else {
+            postButton.setVisibility(View.GONE);
             Bundle extras = getIntent().getExtras();
             userId = extras.getString("userId");
         }

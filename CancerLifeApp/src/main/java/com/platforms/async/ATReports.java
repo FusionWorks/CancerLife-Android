@@ -133,6 +133,7 @@ public class ATReports extends AsyncTask<Void, Void, Void> {
             Log.v(Utils.TAG,"reportsHandler "+reportsHandler.getFrequentSymptoms().size());
             Log.v(Utils.TAG,"reportsHandler "+reportsHandler.getNewSymptoms().size());
             Log.v(Utils.TAG,"reportsHandler "+reportsHandler.getQualityOfLife().size());
+
         }
     }
 }
